@@ -22,3 +22,15 @@ end
 get '/something' do
 	erb :something
 end
+
+post '/visit' do
+	@username = params[:username]
+	@phone     = params[:phone]
+	@datetime = params[:datetime]
+
+	f = File.open 'public/user.txt', 'a' #режим 'а' значит append, то есть добавить в конец файла
+	f.write "\nUser: #{@username}, Phone: #{@phone}, Date and time: #{@datetime}<br>"
+	f.close
+
+	erb :visit
+end
